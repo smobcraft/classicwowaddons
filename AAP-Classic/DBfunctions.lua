@@ -1,10 +1,11 @@
 if (tonumber(string.sub(AAPClassic.Build, 1,1)) > 2) then
-	return
+	--return
 end
 AAPClassic.ShowedDB = {}
 AAPClassic.DB = {}
 AAPClassic.TooltipsMapDB = {}
 AAPClassic.TooltipsMapDBPlace = {}
+AAPClassic.TooltipsList = {}
 
 function AAPClassic.CheckShowedDBz()
 	local CurStep = AAPC1[AAPClassic.Realm][AAPClassic.Name]["Zones"][AAPClassic.QH.ZoneNr]
@@ -43,6 +44,12 @@ function AAPClassic.ItemDBcheck(Itemid, Tooltipz,Qid,PartNr)
 							end
 							local numberfortool = AAPClassic.AddIcon(C_Map.GetBestMapForUnit("player"), x, y, Coloridz)
 							AAPClassic.Tooltips[numberfortool] = Tooltipz
+							if (not AAPClassic.TooltipsList[AAP_index]) then
+								AAPClassic.TooltipsList[AAP_index] = {}
+							end
+							if (PartNr and Qid and not AAPClassic.TooltipsList[AAP_index][Qid.."-"..PartNr]) then
+								AAPClassic.TooltipsList[AAP_index][Qid.."-"..PartNr] = Qid.."-"..PartNr
+							end
 							local numberfortool2 = AAPClassic.AddMapIcon(C_Map.GetBestMapForUnit("player"), x, y, Coloridz)
 							AAPClassic.TooltipsMap[numberfortool2] = Tooltipz
 						end
@@ -369,6 +376,12 @@ function AAPClassic.QuestDBcheck(Qid, PartNr, Tooltipz, Fillerz)
 											end
 											local numberfortool = AAPClassic.AddIcon(C_Map.GetBestMapForUnit("player"), x, y, Coloridz, Fillerz)
 											AAPClassic.ShowedDB[Qid][PartNr][numberfortool] = numberfortool
+											if (not AAPClassic.TooltipsList[AAP_index]) then
+												AAPClassic.TooltipsList[AAP_index] = {}
+											end
+											if (not AAPClassic.TooltipsList[AAP_index][Qid.."-"..PartNr]) then
+												AAPClassic.TooltipsList[AAP_index][Qid.."-"..PartNr] = Qid.."-"..PartNr
+											end
 											AAPClassic.TooltipsMapDBPlace[numberfortool] = x..y..z
 											AAPClassic.Tooltips[numberfortool] = Tooltipz
 											AAPClassic.MapMobListFontstrings(Tooltipz, Coloridz)
@@ -420,6 +433,10 @@ function AAPClassic.QuestDBcheck(Qid, PartNr, Tooltipz, Fillerz)
 											local numberfortool = AAPClassic.AddIcon(C_Map.GetBestMapForUnit("player"), x, y, Coloridz, Fillerz)
 											AAPClassic.ShowedDB[Qid][PartNr][numberfortool] = numberfortool
 											AAPClassic.TooltipsMapDBPlace[numberfortool] = x..y..z
+											if (not AAPClassic.TooltipsList[AAP_index]) then
+												AAPClassic.TooltipsList[AAP_index] = {}
+											end
+											AAPClassic.TooltipsList[AAP_index][Qid.."-"..PartNr] = Qid.."-"..PartNr
 											AAPClassic.Tooltips[numberfortool] = Tooltipz
 											AAPClassic.Tooltips2[numberfortool] = "["..AAPClassic["units"][AAP_index]["lvl"].."] "..AAPClassic["unitsNames"][AAP_index]
 											AAPClassic.MapMobListFontstrings("["..AAPClassic["units"][AAP_index]["lvl"].."] "..AAPClassic["unitsNames"][AAP_index],Coloridz)
@@ -553,6 +570,12 @@ function AAPClassic.QuestDBShowMob(MobIdz,Qid,PartNr)
 					AAPClassic.ActiveMobIds[AAPClassic["unitsNames"][MobIdz]] = Qid.."-"..PartNr
 				end
 				local numberfortool = AAPClassic.AddIcon(C_Map.GetBestMapForUnit("player"), x, y, Coloridz)
+				if (not AAPClassic.TooltipsList[MobIdz]) then
+					AAPClassic.TooltipsList[MobIdz] = {}
+				end
+				if (not AAPClassic.TooltipsList[MobIdz][Qid.."-"..PartNr]) then
+					AAPClassic.TooltipsList[MobIdz][Qid.."-"..PartNr] = Qid.."-"..PartNr
+				end
 				AAPClassic.Tooltips[numberfortool] = Tooltipz
 				AAPClassic.Tooltips2[numberfortool] = AAPClassic["unitsNames"][MobIdz]
 				local numberfortool2 = AAPClassic.AddMapIcon(C_Map.GetBestMapForUnit("player"), x, y, Coloridz)
@@ -576,6 +599,12 @@ function AAPClassic.QuestDBShowObj(MobIdz, Namez,Qid,PartNr)
 					AAPClassic.ActiveMobIds[AAPClassic["unitsNames"][MobIdz]] = Qid.."-"..PartNr
 				end
 				local numberfortool = AAPClassic.AddIcon(C_Map.GetBestMapForUnit("player"), x, y, Coloridz)
+				if (not AAPClassic.TooltipsList[MobIdz]) then
+					AAPClassic.TooltipsList[MobIdz] = {}
+				end
+				if (not AAPClassic.TooltipsList[MobIdz][Qid.."-"..PartNr]) then
+					AAPClassic.TooltipsList[MobIdz][Qid.."-"..PartNr] = Qid.."-"..PartNr
+				end
 				AAPClassic.Tooltips[numberfortool] = Namez
 				AAPClassic.Tooltips2[numberfortool] = AAPClassic["unitsNames"][MobIdz]
 				local numberfortool2 = AAPClassic.AddMapIcon(C_Map.GetBestMapForUnit("player"), x, y, Coloridz)

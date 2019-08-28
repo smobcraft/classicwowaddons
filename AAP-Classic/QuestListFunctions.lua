@@ -1,6 +1,6 @@
 AAPClassic.QLF = {}
 if (tonumber(string.sub(AAPClassic.Build, 1,1)) > 2) then
-	return
+	--return
 end
 local LineNumber = 0
 AAPClassic.CurZoneQListed = 0
@@ -230,7 +230,11 @@ function AAPClassic.QLF.QuestText(Step)
 		LineNumber = LineNumber + 1
 		AAPClassic.QL.QuestFrames["FS"..LineNumber]:SetText(Step["ExtraQpart"].." "..GetItemCount(Step["ItemID"]).."/"..Step["Ammount"])
 		AAPClassic.QL.QuestFrames[LineNumber]:Show()
-		AAPClassic.ItemDBcheck(Step["ItemID"], Step["ExtraLine"],Step["ItemID2"],Step["ItemID3"])
+		if (Step["ItemID"] and Step["ExtraLine"] and Step["ItemID2"] and Step["ItemID3"]) then
+			AAPClassic.ItemDBcheck(Step["ItemID"], Step["ExtraLine"],Step["ItemID2"],Step["ItemID3"])
+		elseif (Step["ItemID"] and Step["ExtraLine"] and Step["Qid"]) then
+			AAPClassic.ItemDBcheck(Step["ItemID"], Step["ExtraLine"],Step["Qid"],1)
+		end
 		if (Step["ShowObjectOnMap"]) then
 			AAPClassic.QuestDBShowObj(Step["ShowObjectOnMap"], Step["ExtraQpart"],Step["ShowObjectOnMap2"],Step["ShowObjectOnMap3"])
 		end

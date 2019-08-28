@@ -1,7 +1,7 @@
 AAPClassic.QuestList = {}
 AAPClassic.QH = {}
 if (tonumber(string.sub(AAPClassic.Build, 1,1)) > 2) then
-	return
+	--return
 end
 AAPClassic.QH.BookingList = {}
 AAPClassic.CheckNamePlates = {}
@@ -1118,7 +1118,7 @@ AAPClassic.QH.EventFrame:RegisterEvent ("LEARNED_SPELL_IN_TAB")
 AAPClassic.QH.EventFrame:RegisterEvent ("CHAT_MSG_LOOT")
 AAPClassic.QH.EventFrame:RegisterEvent ("TAXIMAP_OPENED")
 AAPClassic.QH.EventFrame:RegisterEvent ("UI_INFO_MESSAGE")
-AAPClassic.QH.EventFrame:RegisterEvent ("TRADE_SKILL_UPDATE")
+--AAPClassic.QH.EventFrame:RegisterEvent ("TRADE_SKILL_UPDATE")
 AAPClassic.QH.EventFrame:RegisterEvent ("NAME_PLATE_UNIT_ADDED")
 AAPClassic.QH.EventFrame:RegisterEvent ("NAME_PLATE_UNIT_REMOVED")
 AAPClassic.QH.EventFrame:RegisterEvent ("PLAYER_TARGET_CHANGED")
@@ -1154,6 +1154,7 @@ AAPClassic.QH.EventFrame:SetScript("OnEvent", function(self, event, ...)
 		AAPClassic.QH.FuncLoopNumber = 1
 	elseif (event=="QUEST_REMOVED") then
 		local arg1, arg2, arg3, arg4 = ...;
+		--print("-------------------")
 		--print("Removed - Qid: "..arg1)
 		--print("-------------------")
 		if (not AAPClassic.QH.BookingList.RemoveQuest) then
@@ -1166,6 +1167,7 @@ AAPClassic.QH.EventFrame:SetScript("OnEvent", function(self, event, ...)
 	elseif (event=="QUEST_ACCEPTED") then
 		local arg1, arg2, arg3, arg4 = ...;
 		--print("Accepted - QlogIndex: "..arg1)
+		--print("-------------------")
 		--print("Accepted - Qid: "..arg2)
 		--print("-------------------")
 		if (not AAPClassic.QH.BookingList.AddQuest) then

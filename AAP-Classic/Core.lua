@@ -3,7 +3,7 @@ AAPClassic.Explored = {}
 AAPClassic.Build = GetBuildInfo()
 if (tonumber(string.sub(AAPClassic.Build, 1,1)) > 2) then
 	print("AAP-Classic - Error - This is not Classic! Not Loading")
-	return
+	--return
 end
 AAPClassic.Name = UnitName("player")
 AAPClassic.Realm = string.gsub(GetRealmName(), " ", "")
@@ -140,6 +140,9 @@ AAPClassic.EventFrame:SetScript("OnEvent", function(self, event, ...)
 			end
 			if (not AAPC1[AAPClassic.Realm][AAPClassic.Name]["Elite"]) then
 				AAPC1[AAPClassic.Realm][AAPClassic.Name]["Elite"] = {}
+			end
+			if (not AAPC1[AAPClassic.Realm][AAPClassic.Name]["Zones"]) then
+				AAPC1[AAPClassic.Realm][AAPClassic.Name]["Zones"] = {}
 			end
 			SlashCmdList["AAP_Cmd"] = AAP_SlashCmd
 			SLASH_AAP_Cmd1 = "/aap"

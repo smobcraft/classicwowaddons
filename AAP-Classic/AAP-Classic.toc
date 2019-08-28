@@ -1,10 +1,9 @@
-## Interface: 80100
-## X-Min-Interface: 80100
+## Interface: 11302
 
 ## Title: Azeroth Auto Pilot <Classic> 1-60
 ## Notes: AAP Classic
 ## Author: Zyrrael
-## Version: 0.09
+## Version: 0.12
 ## SavedVariables: AAPC1, AAPC2, AAPC3, AAPCQuestNames, AAPC_HoldZoneVar
 lib\LibStub\LibStub.lua
 lib\CallbackHandler-1.0\CallbackHandler-1.0.xml
@@ -19,6 +18,7 @@ QuestFunctions.lua
 QuestListFunctions.lua
 DBfunctions.lua
 MapFunctions.lua
+ZoneOrders.lua
 A1-30.lua
 A30-60.lua
 H1-30.lua

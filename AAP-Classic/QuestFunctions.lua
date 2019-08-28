@@ -1,6 +1,6 @@
 AAPClassic.QF = {}
 if (tonumber(string.sub(AAPClassic.Build, 1,1)) > 2) then
-	return
+	--return
 end
 function AAPClassic.QF.GroupQuestFrame()
 	local CurStep = AAPC1[AAPClassic.Realm][AAPClassic.Name]["Zones"][AAPClassic.QH.ZoneNr]
@@ -31,7 +31,7 @@ function AAPClassic.QF.PickUp()
 		if (not AAPClassic.QuestList[theqid] and IsQuestFlaggedCompleted(theqid) == false) then
 			NrLeft = NrLeft + 1
 		end
-		if (IsQuestFlaggedCompleted(theqid) or AAPClassic.QuestList[theqid] or AAPC1[AAPClassic.Realm][AAPClassic.Name]["Completed"][theqid]) then
+		if (IsQuestFlaggedCompleted(theqid) or AAPClassic.QuestList[theqid] or (AAPC1[AAPClassic.Realm][AAPClassic.Name]["Completed"] and AAPC1[AAPClassic.Realm][AAPClassic.Name]["Completed"][theqid])) then
 			Flagged = Flagged + 1
 		end
 	end
@@ -77,7 +77,7 @@ function AAPClassic.QF.Qpart()
 	for AAP_index,AAP_value in pairs(IdList) do
 		for AAP_index2,AAP_value2 in pairs(AAP_value) do
 			Total = Total + 1
-			if (IsQuestFlaggedCompleted(AAP_index) or AAPC1[AAPClassic.Realm][AAPClassic.Name]["Completed"][AAP_index]) then
+			if (IsQuestFlaggedCompleted(AAP_index) or (AAPC1[AAPClassic.Realm][AAPClassic.Name]["Completed"] and AAPC1[AAPClassic.Realm][AAPClassic.Name]["Completed"][AAP_index])) then
 				Flagged = Flagged + 1
 			elseif (AAPClassic.QuestList[AAP_index] and AAPClassic.QuestList[AAP_index]["Objectives"] and AAPClassic.QuestList[AAP_index]["Objectives"][tonumber(AAP_index2)] and AAPClassic.QuestList[AAP_index]["Objectives"][tonumber(AAP_index2)]["isComplete"] == 1) then
 				Flagged = Flagged + 1
@@ -126,7 +126,7 @@ function AAPClassic.QF.Done()
 		end
 		if (IsQuestFlaggedCompleted(theqid)) then
 			Flagged = Flagged + 1
-		elseif (AAPC1[AAPClassic.Realm][AAPClassic.Name]["Completed"][theqid]) then
+		elseif (AAPC1[AAPClassic.Realm][AAPClassic.Name]["Completed"] and AAPC1[AAPClassic.Realm][AAPClassic.Name]["Completed"][theqid]) then
 			Flagged = Flagged + 1
 		end
 	end
@@ -267,14 +267,17 @@ function AAPClassic.QF.CRange()
 	--print("CRange!")
 	local CurStep = AAPC1[AAPClassic.Realm][AAPClassic.Name]["Zones"][AAPClassic.QH.ZoneNr]
 	local Step = AAPClassic.Path[AAPClassic.QH.ZoneNr][CurStep]
-	local IdList = Step["CRange"]
+	local IdList
+	if (Step) then
+		IdList = Step["CRange"]
+	end
 	if (Step and Step["Button"]) then
 		AAPClassic.QH.BookingList.ShowButton = Step["Button"]
 	end
 	if (IdList and IsQuestFlaggedCompleted(IdList)) then
 		AAPC1[AAPClassic.Realm][AAPClassic.Name]["Zones"][AAPClassic.QH.ZoneNr] = AAPC1[AAPClassic.Realm][AAPClassic.Name]["Zones"][AAPClassic.QH.ZoneNr] + 1
 		AAPClassic.QH.FuncLoopNumber = 1
-	elseif (Step["GroupTask"] and AAPC1[AAPClassic.Realm][AAPClassic.Name]["Elite"][Step["GroupTask"]]) then
+	elseif (Step and Step["GroupTask"] and AAPC1[AAPClassic.Realm][AAPClassic.Name]["Elite"][Step["GroupTask"]]) then
 		AAPC1[AAPClassic.Realm][AAPClassic.Name]["Zones"][AAPClassic.QH.ZoneNr] = AAPC1[AAPClassic.Realm][AAPClassic.Name]["Zones"][AAPClassic.QH.ZoneNr] + 1
 		AAPClassic.QH.FuncLoopNumber = 1
 	end

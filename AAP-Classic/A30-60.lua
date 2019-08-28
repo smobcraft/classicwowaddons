@@ -3114,16 +3114,6 @@ AAPClassic.PathA2 = {
 			},
 		}, -- [8]
 		{
-			["PickUp"] = {
-				328, -- [1]
-			},
-			["TT"] = {
-				["y"] = -11567.8,
-				["x"] = -566.1,
-			},
-			["Zone"] = "33 (Stranglethorn Vale)",
-		}, -- [9]
-		{
 			["Qpart"] = {
 				[203] = {
 					["1"] = "1",
@@ -3508,6 +3498,16 @@ AAPClassic.PathA2 = {
 			},
 			["Zone"] = "17 (The Barrens)",
 		}, -- [40]
+		{
+			["Done"] = {
+				1039, -- [1]
+			},
+			["TT"] = {
+				["y"] = -985.6,
+				["x"] = -3796.6,
+			},
+			["Zone"] = "17 (The Barrens)",
+		}, -- [112]
 		{
 			["ExtraLine"] = "Run to the Great Lift",
 			["CRange"] = 1100,
